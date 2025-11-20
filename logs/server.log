@@ -1,0 +1,31 @@
+INFO:     Will watch for changes in these directories: ['/home/workspace']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [152] using StatReload
+INFO:     Started server process [154]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     172.20.0.1:50822 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:51138 - "GET /api/gallery HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51150 - "GET /api/life-groups HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51154 - "GET /api/sermons HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51162 - "GET /api/events HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51138 - "GET /api/gallery HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51150 - "GET /api/life-groups HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51154 - "GET /api/sermons HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51162 - "GET /api/events HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51164 - "GET /api/events HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51164 - "GET /api/sermons HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39322 - "GET /api/life-groups HTTP/1.1" 200 OK
+INFO:     172.20.0.1:51164 - "GET /api/sermons HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39322 - "GET /api/life-groups HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39324 - "GET /api/gallery HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39340 - "GET /api/events HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39324 - "GET /api/gallery HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39652 - "GET /api/life-groups HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39660 - "GET /api/gallery HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39666 - "GET /api/events HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39652 - "GET /api/sermons HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39660 - "GET /api/life-groups HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39670 - "GET /api/gallery HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39666 - "GET /api/events HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39652 - "GET /api/sermons HTTP/1.1" 200 OK

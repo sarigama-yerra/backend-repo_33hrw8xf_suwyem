@@ -1,48 +1,49 @@
 """
-Database Schemas
+Database Schemas for Church Website
 
-Define your MongoDB collection schemas here using Pydantic models.
-These schemas are used for data validation in your application.
-
-Each Pydantic model represents a collection in your database.
-Model name is converted to lowercase for the collection name:
-- User -> "user" collection
-- Product -> "product" collection
-- BlogPost -> "blogs" collection
+Each Pydantic model maps to a MongoDB collection with the lowercase name
+(e.g., Event -> "event").
 """
 
-from pydantic import BaseModel, Field
-from typing import Optional
+from pydantic import BaseModel, Field, HttpUrl
+from typing import Optional, List
+from datetime import datetime
 
-# Example schemas (replace with your own):
+class Event(BaseModel):
+    title: str = Field(..., description="Event title")
+    description: str = Field(..., description="Short description of the event")
+    date: datetime = Field(..., description="Event date and time")
+    image_url: Optional[HttpUrl] = Field(None, description="Image representing the event")
+    category: str = Field(..., description="Type of event, e.g., Outreach, Youth, Worship")
 
-class User(BaseModel):
-    """
-    Users collection schema
-    Collection name: "user" (lowercase of class name)
-    """
-    name: str = Field(..., description="Full name")
-    email: str = Field(..., description="Email address")
-    address: str = Field(..., description="Address")
-    age: Optional[int] = Field(None, ge=0, le=120, description="Age in years")
-    is_active: bool = Field(True, description="Whether user is active")
+class Sermon(BaseModel):
+    title: str = Field(..., description="Sermon title")
+    speaker: str = Field(..., description="Speaker name")
+    series: Optional[str] = Field(None, description="Series name if applicable")
+    date: datetime = Field(..., description="Sermon date")
+    video_url: Optional[HttpUrl] = Field(None, description="Link to video recording")
+    audio_url: Optional[HttpUrl] = Field(None, description="Link to audio recording")
+    notes: Optional[str] = Field(None, description="Written notes or link to transcript")
 
-class Product(BaseModel):
-    """
-    Products collection schema
-    Collection name: "product" (lowercase of class name)
-    """
-    title: str = Field(..., description="Product title")
-    description: Optional[str] = Field(None, description="Product description")
-    price: float = Field(..., ge=0, description="Price in dollars")
-    category: str = Field(..., description="Product category")
-    in_stock: bool = Field(True, description="Whether product is in stock")
+class LifeGroup(BaseModel):
+    name: str = Field(..., description="Group name")
+    leader: str = Field(..., description="Leader name")
+    meeting_day: str = Field(..., description="Day of week the group meets")
+    meeting_time: str = Field(..., description="Time the group meets")
+    location: str = Field(..., description="Location or area")
+    description: Optional[str] = Field(None, description="Short overview of the group focus")
+    signup_url: Optional[HttpUrl] = Field(None, description="External sign-up link if any")
 
-# Add your own schemas here:
-# --------------------------------------------------
+class PrayerRequest(BaseModel):
+    name: Optional[str] = Field(None, description="Name of the person requesting prayer")
+    email: Optional[str] = Field(None, description="Contact email")
+    request: str = Field(..., description="Prayer request details")
+    is_public: bool = Field(False, description="If true, can be displayed to others")
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class GalleryItem(BaseModel):
+    title: str = Field(..., description="Caption or title")
+    media_type: str = Field(..., description="photo or video")
+    url: HttpUrl = Field(..., description="Media URL")
+    album: Optional[str] = Field(None, description="Album name: services, missions, events, etc.")
+
+# The Flames database viewer will automatically use these schemas for validation.
