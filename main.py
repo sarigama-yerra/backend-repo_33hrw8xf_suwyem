@@ -85,7 +85,10 @@ def list_life_groups(limit: Optional[int] = 100):
         items = get_documents(collection_name(LifeGroup), {}, limit)
         for it in items:
             it["_id"] = str(it.get("_id"))
-            return items
+            for k, v in list(it.items()):
+                if isinstance(v, datetime):
+                    it[k] = v.isoformat()
+        return items
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -125,6 +128,9 @@ def list_prayers(limit: Optional[int] = 100, public_only: bool = True):
         items = get_documents(collection_name(PrayerRequest), filt, limit)
         for it in items:
             it["_id"] = str(it.get("_id"))
+            for k, v in list(it.items()):
+                if isinstance(v, datetime):
+                    it[k] = v.isoformat()
         return items
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
